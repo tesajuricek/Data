@@ -100,4 +100,7 @@ for x in regions:
     ochotny = 0
     
 for x in list:
-    if str(x[0]) in dic:
+    if x[1] == 1:
+        ochotny += 1
+
+print(f"{ochotny/len(list)*100 }")
