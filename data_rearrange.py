@@ -99,8 +99,14 @@ for x in regions:
     reg_count += 1
     ochotny = 0
     
-for x in list:
-    if x[1] == 1:
-        ochotny += 1
+    
+ochotny = 0
+ucastnici = 0
+ 
+for x in regions:
+    ucastnici += len(x)
+    for y in x:
+        if y == 1:
+            ochotny += 1
 
-print(f"{ochotny/len(list)*100 }")
+print(f"{ochotny/ucastnici*100 }")
