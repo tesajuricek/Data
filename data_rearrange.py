@@ -31,14 +31,7 @@ for index, row in df.iterrows():
     dvojica = [column1_value, column2_value]
     list.append(dvojica)
 
-workbook = openpyxl.Workbook()
-worksheet = workbook.active
 
-
-for row in list:
-    worksheet.append(row)
-
-workbook.save('data.xlsx')
 # print(list)
 # print(worksheet)
 
@@ -84,7 +77,7 @@ region_names = ["SK010", "SK021", "SK022", "SK023", "SK031", "SK032", "SK041", "
 mean_regions = []
 
 ochotny = 0
-
+xlsx_list = []
 
 for x in regions:
     mean = sum(x) / len(x)
@@ -96,10 +89,10 @@ for x in regions:
         if y == 1:
             ochotny += 1
     print(f"Region {region_names[reg_count]}: {int(ochotny / (len(x)) * 100)}")
+    xlsx_list.append([region_names[reg_count], int(ochotny / (len(x)) * 100)])
     reg_count += 1
     ochotny = 0
-    
-    
+ 
 ochotny = 0
 ucastnici = 0
  
@@ -110,3 +103,13 @@ for x in regions:
             ochotny += 1
 
 print(f"{ochotny/ucastnici*100 }")
+
+
+
+workbook = openpyxl.Workbook()
+worksheet = workbook.active
+
+for row in xlsx_list:
+    worksheet.append(row)
+
+workbook.save('data.xlsx')
